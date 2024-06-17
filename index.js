@@ -12,7 +12,7 @@ const PORT = 8001;
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./views'));  
 
-handleMongoDBConnect('mongodb://localhost:27017/short-url')
+handleMongoDBConnect('mongodb+srv://keyurdungarani33:short-url@linkshort.k6l1v73.mongodb.net/')
 app.use(express.json({extended: false}))
 app.use(express.urlencoded({extended: false}))
 
