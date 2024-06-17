@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            transition: background-color 3s ease;
+            /* Add transition for smooth color change */
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center">Hello from EJS</h1>
+    <h2 style="text-decoration: underline">Link Shortner</h2>
+
+    <div>
+        <form method="post" action="/url">
+            <label>Enter your URL: </label>
+            <input type="text" name="url" placeholder="http://example.com" />
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <% if (locals.id) { %>
+        <!-- <p>Generated URL: http://localhost:8001/url/<%= id %>
+            <button >copy</button>
+        </p> -->
+        <p>
+            Generated URL:
+            <span id="generated-url">http://localhost:8001/url/<%= id %></span>
+            <button id="copy-button">Copy</button>
+        </p>
+        <!-- <a href="http://localhost:8001/url/<%= id %>" target="_blank"> Here your short Id </a> -->
+        <% } %>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", (event) => {
+                    const copyButton = document.getElementById("copy-button");
+                    const urlSpan = document.getElementById("generated-url");
+
+                    copyButton.addEventListener("click", () => {
+                        const url = urlSpan.innerText;
+                        navigator.clipboard
+                            .writeText(url)
+                            .then(() => {
+                                alert("URL copied to clipboard!");
+                            })
+                            .catch((err) => {
+                                console.error("Could not copy text: ", err);
+                            });
+                    });
+                });
+                const colors = [
+                    "red",
+                    "blue",
+                    "pink",
+                    "green",
+                    "yellow",
+                    "white",
+                    "grey",
+                    "violate",
+                ];
+                setInterval(() => {
+                    const randomNo = Math.floor(Math.random() * colors.length); // Use  to inject colors array length
+                    const color = colors[randomNo]; // Get color from EJS variable
+                    document.body.style.backgroundColor = color; // Set background color
+                }, 3000);
+            </script>
+</body>
+
+</html>
