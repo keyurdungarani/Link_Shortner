@@ -3,6 +3,7 @@ import URL from "../models/url.js"
 import mongoose from "mongoose";
 import fs from 'fs';
 
+
 async function handleGenerateNewShortURL(req, res) {
     const body = req.body;
     if (!body.url) return res.status(400).json({ error: "url is required" })
@@ -13,7 +14,7 @@ async function handleGenerateNewShortURL(req, res) {
         redirectURL: body.url,
         visitHistory: [],
     })
-    return res.render('home', { id: urlData?.shortId });
+    return res.render('home', { id: urlData?.shortId, domain : process.env.DOMAIN });
 }
 
 async function handleGetUrl(req, res) {

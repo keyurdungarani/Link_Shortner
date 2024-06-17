@@ -25,13 +25,10 @@
         </form>
     </div>
 
-    <% if (locals.id) { %>
-        <!-- <p>Generated URL: http://localhost:8001/url/<%= id %>
-            <button >copy</button>
-        </p> -->
+    <% if (locals.id, locals.domain) { %>
         <p>
             Generated URL:
-            <span id="generated-url">http://localhost:8001/url/<%= id %></span>
+            <span id="generated-url"><%= domain %><%= id %></span>
             <button id="copy-button">Copy</button>
         </p>
         <!-- <a href="http://localhost:8001/url/<%= id %>" target="_blank"> Here your short Id </a> -->

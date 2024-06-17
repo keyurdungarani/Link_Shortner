@@ -5,14 +5,16 @@ import URL from './models/url.js';
 import ejs from 'ejs'
 import path from 'path'
 import staticRoute from './routes/staticRouter.js'
-
+import dotenv from 'dotenv'
 const app = express();
 const PORT = 8001;
+dotenv.config()
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./views'));  
 
-handleMongoDBConnect('mongodb+srv://keyurdungarani33:short-url@linkshort.k6l1v73.mongodb.net/')
+// handleMongoDBConnect('mongodb+srv://keyurdungarani33:short-url@linkshort.k6l1v73.mongodb.net/')
+handleMongoDBConnect(process.env.MONGOURL);
 app.use(express.json({extended: false}))
 app.use(express.urlencoded({extended: false}))
 
